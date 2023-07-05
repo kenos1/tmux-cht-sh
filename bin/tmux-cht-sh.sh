@@ -1,6 +1,15 @@
 #!/usr/bin/env bash
 
 CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+if test -f "$CURRENT_DIR/cht.sh"; then
+  CHTSH="$CURRENT_DIR/cht.sh"
+else
+  curl https://cht.sh/:cht.sh > "$CURRENT_DIR/cht.sh"
+  chmod +x "$CURRENT_DIR/cht.sh"
+  CHTSH="$CURRENT_DIR/cht.sh"
+fi
+
 ITEM="$(curl -s https://cheat.sh/:list | fzf)"
 
 if [ "$ITEM" == "" ]; then
@@ -17,4 +26,4 @@ fi
 
 QUERY="$(printf $QUERY | sed 's/\ /+/g')"
 
-curl -s "https://cht.sh/$ITEM/$QUERY" | $PAGER
+bash $CHTSH $ITEM $QUERY | $PAGER
