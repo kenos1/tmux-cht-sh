@@ -5,7 +5,7 @@ CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 if test -f "$CURRENT_DIR/cht.sh"; then
   CHTSH="$CURRENT_DIR/cht.sh"
 else
-  curl https://cht.sh/:cht.sh > "$CURRENT_DIR/cht.sh"
+  curl -Ss https://cht.sh/:cht.sh > "$CURRENT_DIR/cht.sh"
   chmod +x "$CURRENT_DIR/cht.sh"
   CHTSH="$CURRENT_DIR/cht.sh"
 fi
@@ -13,7 +13,7 @@ fi
 if test -f "$CURRENT_DIR/list"; then
   LIST="$CURRENT_DIR/list"
 else
-  curl https://cht.sh/:list > "$CURRENT_DIR/list"
+  curl -Ss https://cht.sh/:list > "$CURRENT_DIR/list"
   LIST="$CURRENT_DIR/list"
 fi
 
